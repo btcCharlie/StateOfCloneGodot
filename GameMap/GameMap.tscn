@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcok8s42fct8h"]
+
+[ext_resource type="Shader" path="res://GameMap/simple_water.gdshader" id="1_r18ct"]
+[ext_resource type="Script" path="res://GameMap/Lightning.cs" id="2_q7dkq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ypyab"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tqro5"]
+seamless = true
+noise = SubResource("FastNoiseLite_ypyab")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mlwwk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ya7ne"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_mlwwk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_krs1e"]
+render_priority = 0
+shader = ExtResource("1_r18ct")
+shader_parameter/height_scale = 0.5
+shader_parameter/noise = SubResource("NoiseTexture2D_tqro5")
+shader_parameter/normalmap = SubResource("NoiseTexture2D_ya7ne")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iga7u"]
+material = SubResource("ShaderMaterial_krs1e")
+size = Vector2(10, 10)
+subdivide_width = 160
+subdivide_depth = 160
+
+[node name="Main" type="Node3D"]
+
+[node name="SimpleWater" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.114077)
+mesh = SubResource("PlaneMesh_iga7u")
+
+[node name="Lightning" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70542, 1.96667, 2.19845)
+light_color = Color(0.905882, 1, 1, 1)
+light_energy = 9.0
+omni_range = 10.0
+omni_attenuation = 0.5
+script = ExtResource("2_q7dkq")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 5, 8)
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.907147, 0.0816573, 0.412816, -0.420814, 0.176028, 0.889904, 0, -0.980992, 0.194046, 6.31736, 4.50083, 0)
+light_energy = 0.1
