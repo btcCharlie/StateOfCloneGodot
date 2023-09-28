@@ -42,6 +42,23 @@ light_energy = 9.0
 omni_range = 10.0
 omni_attenuation = 0.5
 script = ExtResource("2_q7dkq")
+threshold = 0.99
+
+[node name="Lightning2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77165, 3.29643, -3.12169)
+light_color = Color(0.905882, 1, 1, 1)
+light_energy = 9.0
+omni_range = 10.0
+omni_attenuation = 0.5
+script = ExtResource("2_q7dkq")
+threshold = 0.999
+
+[node name="Lightning3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.785781, 8.16677, -3.12169)
+light_color = Color(0.905882, 1, 1, 1)
+light_energy = 9.0
+omni_range = 12.5
+script = ExtResource("2_q7dkq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 5, 8)
