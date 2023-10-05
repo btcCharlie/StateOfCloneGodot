@@ -1,64 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcok8s42fct8h"]
+[gd_scene load_steps=5 format=3 uid="uid://dcok8s42fct8h"]
 
-[ext_resource type="Shader" path="res://GameMap/simple_water.gdshader" id="1_r18ct"]
-[ext_resource type="Script" path="res://GameMap/Lightning.cs" id="2_q7dkq"]
+[ext_resource type="Script" path="res://GameMap/MeshTest.cs" id="1_7p088"]
+[ext_resource type="Shader" path="res://GameMap/TestShaderCustom.gdshader" id="1_jgisg"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ypyab"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tqro5"]
-seamless = true
-noise = SubResource("FastNoiseLite_ypyab")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_mlwwk"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ya7ne"]
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_mlwwk")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_krs1e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spt8j"]
 render_priority = 0
-shader = ExtResource("1_r18ct")
-shader_parameter/height_scale = 0.5
-shader_parameter/noise = SubResource("NoiseTexture2D_tqro5")
-shader_parameter/normalmap = SubResource("NoiseTexture2D_ya7ne")
+shader = ExtResource("1_jgisg")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_iga7u"]
-material = SubResource("ShaderMaterial_krs1e")
-size = Vector2(10, 10)
-subdivide_width = 160
-subdivide_depth = 160
+[sub_resource type="ArrayMesh" id="ArrayMesh_bobli"]
 
 [node name="Main" type="Node3D"]
-
-[node name="SimpleWater" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.114077)
-mesh = SubResource("PlaneMesh_iga7u")
-
-[node name="Lightning" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70542, 1.96667, 2.19845)
-light_color = Color(0.905882, 1, 1, 1)
-light_energy = 9.0
-omni_range = 10.0
-omni_attenuation = 0.5
-script = ExtResource("2_q7dkq")
-threshold = 0.99
-
-[node name="Lightning2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77165, 3.29643, -3.12169)
-light_color = Color(0.905882, 1, 1, 1)
-light_energy = 9.0
-omni_range = 10.0
-omni_attenuation = 0.5
-script = ExtResource("2_q7dkq")
-threshold = 0.999
-
-[node name="Lightning3" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.785781, 8.16677, -3.12169)
-light_color = Color(0.905882, 1, 1, 1)
-light_energy = 9.0
-omni_range = 12.5
-script = ExtResource("2_q7dkq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 5, 8)
@@ -66,3 +17,8 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 5, 8)
 [node name="Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.907147, 0.0816573, 0.412816, -0.420814, 0.176028, 0.889904, 0, -0.980992, 0.194046, 6.31736, 4.50083, 0)
 light_energy = 0.1
+
+[node name="MeshTest" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_spt8j")
+mesh = SubResource("ArrayMesh_bobli")
+script = ExtResource("1_7p088")
