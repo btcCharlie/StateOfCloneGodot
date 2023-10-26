@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dcok8s42fct8h"]
 
-[ext_resource type="Script" path="res://GameMap/MeshTest.cs" id="1_7p088"]
 [ext_resource type="Shader" path="res://GameMap/TestShaderCustom.gdshader" id="1_jgisg"]
+[ext_resource type="Script" path="res://GameMap/MapMesh.cs" id="2_da7dg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_spt8j"]
 render_priority = 0
@@ -21,4 +21,4 @@ light_energy = 0.1
 [node name="MeshTest" type="MeshInstance3D" parent="."]
 material_override = SubResource("ShaderMaterial_spt8j")
 mesh = SubResource("ArrayMesh_bobli")
-script = ExtResource("1_7p088")
+script = ExtResource("2_da7dg")

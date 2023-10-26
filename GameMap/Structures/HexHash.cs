@@ -13,14 +13,14 @@ namespace StateOfClone.GameMap
         /// Create a hex hash.
         /// </summary>
         /// <returns>Hash value based on <see cref="UnityEngine.Random"/>.</returns>
-        public static HexHash Create()
+        public static HexHash Create(RandomNumberGenerator rng)
         {
             HexHash hash;
-            hash.a = GD.Randf() * 0.999f;
-            hash.b = GD.Randf() * 0.999f;
-            hash.c = GD.Randf() * 0.999f;
-            hash.d = GD.Randf() * 0.999f;
-            hash.e = GD.Randf() * 0.999f;
+            hash.a = rng.Randf() * 0.999f;
+            hash.b = rng.Randf() * 0.999f;
+            hash.c = rng.Randf() * 0.999f;
+            hash.d = rng.Randf() * 0.999f;
+            hash.e = rng.Randf() * 0.999f;
             return hash;
         }
     }

@@ -134,11 +134,12 @@ namespace StateOfClone.GameMap
         public static void InitializeHashGrid(int seed)
         {
             hashGrid = new HexHash[hashGridSize * hashGridSize];
-            Random.State currentState = Random.state;
-            Random.InitState(seed);
+            RandomNumberGenerator rng = new()
+            {
+                Seed = (ulong)seed
+            };
             for (int i = 0; i < hashGrid.Length; i++)
-                hashGrid[i] = HexHash.Create();
-            Random.state = currentState;
+                hashGrid[i] = HexHash.Create(rng);
         }
 
         /// <summary>
@@ -148,10 +149,10 @@ namespace StateOfClone.GameMap
         /// <returns>Sampled <see cref="HexHash"/>.</returns>
         public static HexHash SampleHashGrid(Vector3 position)
         {
-            int x = (int)(position.x * hashGridScale) % hashGridSize;
+            int x = (int)(position.X * hashGridScale) % hashGridSize;
             if (x < 0)
                 x += hashGridSize;
-            int z = (int)(position.z * hashGridScale) % hashGridSize;
+            int z = (int)(position.Z * hashGridScale) % hashGridSize;
             if (z < 0)
                 z += hashGridSize;
             return hashGrid[x + z * hashGridSize];
@@ -176,9 +177,9 @@ namespace StateOfClone.GameMap
         /// <returns>The positions with noise applied to its XZ components.</returns>
         public static Vector3 Perturb(Vector3 position)
         {
-            Vector4 sample = SampleNoise(position);
-            position.x += (sample.x * 2f - 1f) * cellPerturbStrength;
-            position.z += (sample.z * 2f - 1f) * cellPerturbStrength;
+            Color sample = SampleNoise(position);
+            position.X += (sample.R * 2f - 1f) * cellPerturbStrength;
+            position.Z += (sample.B * 2f - 1f) * cellPerturbStrength;
             return position;
         }
         #endregion

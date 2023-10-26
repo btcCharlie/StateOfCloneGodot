@@ -1,7 +1,8 @@
 using Godot;
 using System.Collections.Generic;
+using StateOfClone.GameMap;
 
-public partial class MeshTest : MeshInstance3D
+public partial class MapMesh : MeshInstance3D
 {
     private int _rings = 50;
     private int _radialSegments = 50;
@@ -43,6 +44,9 @@ public partial class MeshTest : MeshInstance3D
 
     private void CreateGeometry()
     {
+
+
+
         // Vertex indices.
         var thisRow = 0;
         var prevRow = 0;
@@ -54,7 +58,6 @@ public partial class MeshTest : MeshInstance3D
             var v = ((float)i) / _rings;
             var w = Mathf.Sin(Mathf.Pi * v);
             var y = Mathf.Cos(Mathf.Pi * v);
-
 
             // Loop over segments in ring.
             for (int j = 0; j < _radialSegments; j++)
